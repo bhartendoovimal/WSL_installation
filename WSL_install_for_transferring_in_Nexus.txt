@@ -1,0 +1,109 @@
+___NEXUS
+Open Powershell as Administrator
+wsl --install
+[Ububtu] will install
+
+Restart System
+
+
+-----This will get installed------
+Installing, this may take a few minutes...
+Please create a default UNIX user account. The username does not need to match your Windows username.
+For more information visit: https://aka.ms/wslusers
+Enter new UNIX username: bhartendoo
+New password:
+Retype new password:
+passwd: password updated successfully
+Installation successful!
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.10.16.3-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Sep 16 12:11:35 IST 2022
+
+  System load:  0.01               Processes:             8
+  Usage of /:   0.4% of 250.98GB   Users logged in:       0
+  Memory usage: 0%                 IPv4 address for eth0: 172.18.226.246
+  Swap usage:   0%
+
+0 updates can be installed immediately.
+0 of these updates are security updates.
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+
+This message is shown once once a day. To disable it please create the
+/home/bhartendoo/.hushlogin file.
+bhartendoo@DVCGNH6100104:~$
+
+-----
+Download mobaxterm free version
+
+
+Open Ubuntu session in Mobaxterm
+
+bhartendoo@DVCGNH6100104:~$ mkdir Release
+bhartendoo@DVCGNH6100104:~$ cd Release/
+bhartendoo@DVCGNH6100104:~/Release$ rsync -chavzP --stats devops@10.248.65.24:/home/devops/packages/kenan/ora19/CORE_CD .
+The authenticity of host '10.248.65.24 (10.248.65.24)' can't be established.
+ECDSA key fingerprint is SHA256:9l5hC4kLcLOwTxFsBVeTQvYC8uNON08eWbgFEDoNmIw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.248.65.24' (ECDSA) to the list of known hosts.
+devops@10.248.65.24's password:
+
+
+
+
+cd Release
+export https_proxy=http://genproxy.corp.amdocs.com:8080
+find . -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/{} \;
+
+
+---For 207 pipeline
+manually create a directory on devops server 10.248.65.24
+mkdir -p /home/devops/packages/kenan/ora19/CORE_CD/207/
+place the tar file inside this
+INFRA_N.tar.gz
+
+
+---GO to Open Ubuntu session in Mobaxterm
+user-->bhartendoo
+pass-->12345
+
+cd Release/
+rsync -chavzP --stats devops@10.248.65.24:/home/devops/packages/kenan/ora19/CORE_CD .
+##set up in bash_profile
+export https_proxy=http://genproxy.corp.amdocs.com:8080
+find . -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/{} \;
+
+
+--just to upload 1 folder in NUXUS
+Login to WSL ubuntu
+cd /home/bhartendoo/Release/CORE_CD
+find 207 -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/CORE_CD/{} \;
+
+cd /home/bhartendoo/Release/CORE_CD/207/
+find 2 -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/CORE_CD/207/{} \;
+
+cd /home/bhartendoo/Release/CORE_CD/207/
+export https_proxy=http://genproxy.corp.amdocs.com:8080
+find 3 -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/CORE_CD/207/{} \;
+
+
+
+cd /home/bhartendoo/Release/CORE_CD/207/
+export https_proxy=http://genproxy.corp.amdocs.com:8080
+find JBOSS_CLIENT -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/CORE_CD/206/{} \;
+
+cd /home/bhartendoo/Release/CORE_CD/
+export https_proxy=http://genproxy.corp.amdocs.com:8080
+find 206 -type f -exec curl -v --user svc_bccAmdocs:Welcome@123 --ftp-create-dirs -T {} https://nexus.dev.aws.singtel.com/repository/amdocs-raw-in/CORE_CD/{} \;
+
+
